@@ -7,7 +7,8 @@
       <div style="width: 50%;text-align: right"><span style="font-weight: bold">Price</span> : {{item.price}}</div>
     </div>
     <div style="margin-top: 10px;text-align: center">
-      <button class="btn btn-warning">Add to cart</button>
+      <button class="btn btn-warning" style="margin-right: 10px;font-weight: bold">Add to cart</button>
+      <button class="btn btn-success" style="margin-left: 10px" (click)="setItem(item)">Update</button>
     </div>
   </div>
 </div>

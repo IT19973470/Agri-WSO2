@@ -39,7 +39,37 @@ public class FarmerServiceImpl implements FarmerService {
     public ItemDTO addItem(Item item, MultipartFile file) {
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
         item.setItemId("I" + dateTime);
+        addImage(item, file);
+        return new ItemDTO(itemRepository.save(item));
+    }
 
+    @Override
+    public List<ItemDTO> getItems(String email) {
+        List<Item> items = itemRepository.findAllByUserAccountEmail(email);
+        List<ItemDTO> itemDTOS = new ArrayList<>();
+        for (Item item : items) {
+            itemDTOS.add(new ItemDTO(item));
+        }
+        return itemDTOS;
+    }
+
+    @Override
+    public ItemDTO updateItem(String id, Item item, MultipartFile file) {
+        Optional<Item> cardOptional = itemRepository.findById(id);
+        if (cardOptional.isPresent()) {
+            Item itemObj = cardOptional.get();
+            itemObj.setDescription(item.getDescription());
+            itemObj.setPrice(item.getPrice());
+            itemObj.setQty(item.getQty());
+            itemObj.setImgName(item.getImgName());
+            itemObj.setImgType(item.getImgType());
+            addImage(item, file);
+            return new ItemDTO(itemRepository.save(itemObj));
+        }
+        return null;
+    }
+
+    private void addImage(Item item, MultipartFile file) {
         try {
             if (file != null) {
                 String filePathCur = filePath + "\\items";
@@ -61,18 +91,12 @@ public class FarmerServiceImpl implements FarmerService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return new ItemDTO(itemRepository.save(item));
     }
 
     @Override
-    public List<ItemDTO> getItems(String email) {
-        List<Item> items = itemRepository.findAllByUserAccountEmail(email);
-        List<ItemDTO> itemDTOS = new ArrayList<>();
-        for (Item item : items) {
-            itemDTOS.add(new ItemDTO(item));
-        }
-        return itemDTOS;
+    public boolean removeItem(String id) {
+        itemRepository.deleteById(id);
+        return true;
     }
 
     @Override
@@ -101,7 +125,6 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
 
-
     @Override
     public List<CartDTO> getAllCarts(String nic) {
         List<CartDTO> cardDTOS = new ArrayList<>();
@@ -116,17 +139,6 @@ public class FarmerServiceImpl implements FarmerService {
         return cardDTOS;
     }
 
-    @Override
-    public ItemDTO updateItem(String ID, Item item) {
-        Optional<Item> cardOptional = itemRepository.findById(ID);
-        if (cardOptional.isPresent()) {
-            Item itemObj = cardOptional.get();
-            itemObj.setDescription(item.getDescription());
-            itemObj.setPrice(item.getPrice());
-            return new ItemDTO(itemRepository.save(itemObj));
-        }
-        return null;
-    }
 
     @Override
     public List<ItemDTO> getCardsByTitle(String cardTitle) {
@@ -145,5 +157,6 @@ public class FarmerServiceImpl implements FarmerService {
         cartRepository.deleteByUserAccountEmailAndItemItemId(nic, itemID);
         return true;
     }
+
 
 }

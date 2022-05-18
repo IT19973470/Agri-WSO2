@@ -23,10 +23,11 @@ public interface FarmerService {
 
     public List<CartDTO> getAllCarts(String nic);
 
-    public ItemDTO updateItem(String ID, Item item);
+    public ItemDTO updateItem(String ID, Item item, MultipartFile file);
 
     public List<ItemDTO> getCardsByTitle(String title);
 
     boolean deleteCart(String nic, String itemID);
 
+    boolean removeItem(String id);
 }

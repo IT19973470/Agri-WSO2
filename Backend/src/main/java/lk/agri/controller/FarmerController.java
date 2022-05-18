@@ -26,6 +26,16 @@ public class FarmerController {
         return ResponseEntity.ok(itemService.getItems(email));
     }
 
+    @PutMapping(value = "/updateItem/{id}")
+    public ResponseEntity updateItem(@PathVariable String id, @RequestPart("item") Item item, @RequestParam(value = "file", required = false) MultipartFile file) {
+        return ResponseEntity.ok(itemService.updateItem(id, item, file));
+    }
+
+    @DeleteMapping(value = "/removeItem/{id}")
+    public ResponseEntity removeItem(@PathVariable String id) {
+        return ResponseEntity.ok(itemService.removeItem(id));
+    }
+
     @PostMapping(value = "/addCart")
     public ResponseEntity addCart(@RequestBody Cart cart) {
         return ResponseEntity.ok(itemService.addCart(cart));
@@ -47,10 +57,6 @@ public class FarmerController {
         return ResponseEntity.ok(itemService.getCardsByTitle(getByName));
     }
 
-    @PutMapping(value = "/updateCard/{id}")
-    public ResponseEntity updateItem(@PathVariable String id, @RequestBody Item item) {
-        return ResponseEntity.ok(itemService.updateItem(id, item));
-    }
 
     @DeleteMapping(value = "/deleteCart/{nic}/{itemID}")
     public ResponseEntity deleteCart(@PathVariable String nic, @PathVariable String itemID) {

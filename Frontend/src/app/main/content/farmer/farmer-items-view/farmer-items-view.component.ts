@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FarmerService} from "../../../../_service/farmer.service";
 import {environment} from "../../../../../environments/environment";
 import {DomSanitizer} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-farmer-items-view',
@@ -12,7 +13,7 @@ export class FarmerItemsViewComponent implements OnInit {
 
   items = [];
 
-  constructor(private farmerS: FarmerService, private sanitizer: DomSanitizer) {
+  constructor(private farmerS: FarmerService, private sanitizer: DomSanitizer,private router:Router) {
   }
 
   ngOnInit(): void {
@@ -24,6 +25,11 @@ export class FarmerItemsViewComponent implements OnInit {
       console.log(items)
       this.items = items;
     })
+  }
+
+  setItem(item) {
+    this.farmerS.item = item;
+    this.router.navigate(['/main/farmer/manage_items'])
   }
 
   getImageSrc(itemPackageImage) {
