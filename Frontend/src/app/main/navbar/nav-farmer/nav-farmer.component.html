@@ -1,0 +1,21 @@
+<div style="padding-left: 10px;padding-top: 10px;padding-right: 10px;margin-top: 0px">
+
+  <div
+    routerLink="/main/farmer/view_items"
+    (click)="setTopic('View Items')"
+    #viewItems="routerLinkActive"
+    routerLinkActive
+    [ngStyle]="{'color':viewItems.isActive?'#c0050e':''}">
+    View Items
+  </div>
+
+  <div
+    routerLink="/main/farmer/manage_items"
+    (click)="setTopic('Manage Items')"
+    #manageItems="routerLinkActive"
+    routerLinkActive
+    [ngStyle]="{'color':manageItems.isActive?'#c0050e':''}">
+    Manage Items
+  </div>
+
+</div>
