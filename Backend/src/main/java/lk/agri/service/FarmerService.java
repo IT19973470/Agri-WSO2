@@ -13,11 +13,13 @@ public interface FarmerService {
 
     ItemDTO addItem(Item item, MultipartFile file);
 
+    List<ItemDTO> getItems(String email);
+
     public Cart addCart(Cart cart);
 
     public List<ItemDTO> AllCards();
 
-    public List<ItemDTO> getAllCards(String nic);
+
 
     public List<CartDTO> getAllCarts(String nic);
 

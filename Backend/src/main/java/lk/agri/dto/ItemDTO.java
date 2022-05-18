@@ -11,6 +11,7 @@ public class ItemDTO {
     private String price;
     private String imgName;
     private String imgType;
+    private int qty;
 
     private UserAccount userAccount;
 
@@ -20,6 +21,7 @@ public class ItemDTO {
         this.price = item.getPrice();
         this.imgName = item.getImgName();
         this.imgType = item.getImgType();
+        this.qty = item.getQty();
     }
 
     public UserAccount getUserAccount() {
@@ -68,5 +70,13 @@ public class ItemDTO {
 
     public void setImgType(String imgType) {
         this.imgType = imgType;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }

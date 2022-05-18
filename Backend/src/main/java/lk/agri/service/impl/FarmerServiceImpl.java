@@ -66,6 +66,16 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
     @Override
+    public List<ItemDTO> getItems(String email) {
+        List<Item> items = itemRepository.findAllByUserAccountEmail(email);
+        List<ItemDTO> itemDTOS = new ArrayList<>();
+        for (Item item : items) {
+            itemDTOS.add(new ItemDTO(item));
+        }
+        return itemDTOS;
+    }
+
+    @Override
     public Cart addCart(Cart cart) {
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
         cart.setCartPK(new CartPK(cart.getUserAccount().getEmail(), cart.getItem().getItemId(), true));
@@ -90,16 +100,7 @@ public class FarmerServiceImpl implements FarmerService {
         return cardDTOS;
     }
 
-    @Override
-    public List<ItemDTO> getAllCards(String nic) {
-        List<Item> items = itemRepository.findAllByUserAccountEmail(nic);
-        List<ItemDTO> cardDTOS = new ArrayList<>();
 
-        for (Item item : items) {
-            cardDTOS.add(new ItemDTO(item));
-        }
-        return cardDTOS;
-    }
 
     @Override
     public List<CartDTO> getAllCarts(String nic) {

@@ -21,15 +21,16 @@ public class FarmerController {
         return ResponseEntity.ok(itemService.addItem(item, file));
     }
 
+    @GetMapping(value = "/getItems/{email}")
+    public ResponseEntity getItems(@PathVariable String email) {
+        return ResponseEntity.ok(itemService.getItems(email));
+    }
+
     @PostMapping(value = "/addCart")
     public ResponseEntity addCart(@RequestBody Cart cart) {
         return ResponseEntity.ok(itemService.addCart(cart));
     }
 
-    @GetMapping(value = "/getAllCards/{nic}")
-    public ResponseEntity getAlCards(@PathVariable String nic) {
-        return ResponseEntity.ok(itemService.getAllCards(nic));
-    }
 
     @GetMapping(value = "/getAllCarts/{nic}")
     public ResponseEntity getAllCarts(@PathVariable String nic) {

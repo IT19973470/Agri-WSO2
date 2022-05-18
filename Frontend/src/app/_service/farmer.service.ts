@@ -14,4 +14,8 @@ export class FarmerService {
   addItem(item): Observable<any> {
     return this.http.post<any>(environment.backend_url + "/farmer/addItem", item);
   }
+
+  getItems(): Observable<any> {
+    return this.http.get<any>(environment.backend_url + "/farmer/getItems/" + JSON.parse(localStorage.getItem('user')).email);
+  }
 }
