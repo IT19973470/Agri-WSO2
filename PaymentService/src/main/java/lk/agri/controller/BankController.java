@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "Bank/" + "payment")
+@RequestMapping(value = "payment")
 public class BankController {
 
     @Autowired
     private BankService bankService;
 
     @PostMapping(value = "/addPayment")
-    public ResponseEntity addpayment(@RequestBody Purchase purchase){
+    public ResponseEntity addPayment(@RequestBody Purchase purchase){
         return ResponseEntity.ok(bankService.addPayment(purchase));
     }
 
