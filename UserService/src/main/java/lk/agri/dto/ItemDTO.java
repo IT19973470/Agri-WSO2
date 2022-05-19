@@ -1,25 +1,29 @@
-package lk.agri.entity;
+package lk.agri.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
-@Entity
-public class Item {
+import lk.agri.entity.Item;
+import lk.agri.entity.UserAccount;
 
-    @Id
+public class ItemDTO {
+
     private String itemId;
     private String description;
     private String price;
     private String imgName;
     private String imgType;
     private int qty;
+    private int bQty = 1;
 
-    public Item() {
-    }
-
-    @ManyToOne
     private UserAccount userAccount;
+
+    public ItemDTO(Item item) {
+        this.itemId = item.getItemId();
+        this.description = item.getDescription();
+        this.price = item.getPrice();
+        this.imgName = item.getImgName();
+        this.imgType = item.getImgType();
+        this.qty = item.getQty();
+    }
 
     public UserAccount getUserAccount() {
         return userAccount;
@@ -75,5 +79,13 @@ public class Item {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public int getbQty() {
+        return bQty;
+    }
+
+    public void setbQty(int bQty) {
+        this.bQty = bQty;
     }
 }

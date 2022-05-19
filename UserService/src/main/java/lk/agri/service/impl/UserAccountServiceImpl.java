@@ -7,9 +7,6 @@ import lk.agri.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
 
@@ -17,8 +14,8 @@ public class UserAccountServiceImpl implements UserAccountService {
     private UserAccountRepository userAccountRepository;
 
     @Override
-    public UserAccountDTO login(String email, String password) {
-        UserAccount userAccountObj = userAccountRepository.findByEmailAndPassword(email, password);
+    public UserAccountDTO login(UserAccount userAccount) {
+        UserAccount userAccountObj = userAccountRepository.findByEmailAndPassword(userAccount.getEmail(), userAccount.getPassword());
         return new UserAccountDTO(userAccountObj);
     }
 

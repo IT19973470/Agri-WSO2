@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-//@RequestMapping(value = "agriculture/user")
 @RequestMapping(value = "user")
 public class UserAccountController {
 
@@ -17,7 +16,7 @@ public class UserAccountController {
 
     @PostMapping(value = "/login")
     public ResponseEntity login(@RequestBody UserAccount userAccount) {
-        return ResponseEntity.ok(userAccountService.login(userAccount.getEmail(), userAccount.getPassword()));
+        return ResponseEntity.ok(userAccountService.login(userAccount));
     }
 
     @PostMapping(value = "/signUp")
