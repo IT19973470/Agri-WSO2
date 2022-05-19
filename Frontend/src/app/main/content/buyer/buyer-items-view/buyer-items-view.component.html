@@ -1,3 +1,12 @@
+<div style="padding-top: 5px;padding-bottom: 10px">
+  Search Item <br>
+  <div style="display: flex">
+    <input type="text" class="form-control" style="height: 25px" [(ngModel)]="txt">
+    <button class="btn btn-success" style="padding: 2px 10px 2px 10px;font-size: 14px"
+    (click)="getItems()">Search</button>
+  </div>
+</div>
+
 <div class="row" style="padding-left: 10px">
   <div class="col-3" *ngFor="let item of items" style="border: 2px solid #878787;padding: 10px;margin-right: 10px;border-radius: 10px">
     <img [src]="getImageSrc(item)" style="width: 300px;height: 150px;display:block;margin: auto">
@@ -7,8 +16,8 @@
       <div style="width: 50%;text-align: right"><span style="font-weight: bold">Price</span> : {{item.price}}</div>
     </div>
     <div style="margin-top: 10px;text-align: center">
-      <!--<button class="btn btn-warning" style="margin-right: 10px;font-weight: bold">Add to cart</button>-->
-      <button class="btn btn-success" (click)="setItem(item)">Update</button>
+      <button class="btn btn-warning" style="margin-right: 10px;font-weight: bold">Add to cart</button>
+      <!--<button class="btn btn-success" (click)="setItem(item)">Update</button>-->
     </div>
   </div>
 </div>

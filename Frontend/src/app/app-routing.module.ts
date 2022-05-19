@@ -6,6 +6,9 @@ import {MainComponent} from "./main/main.component";
 import {FarmerItemsViewComponent} from "./main/content/farmer/farmer-items-view/farmer-items-view.component";
 import {FarmerItemsManageComponent} from "./main/content/farmer/farmer-items-manage/farmer-items-manage.component";
 import {FarmerComponent} from "./main/content/farmer/farmer.component";
+import {BuyerComponent} from "./main/content/buyer/buyer.component";
+import {BuyerItemsViewComponent} from "./main/content/buyer/buyer-items-view/buyer-items-view.component";
+import {BuyerCartComponent} from "./main/content/buyer/buyer-cart/buyer-cart.component";
 
 const routes: Routes = [
   {
@@ -36,6 +39,20 @@ const routes: Routes = [
           {
             path: 'manage_items',
             component: FarmerItemsManageComponent
+          }
+        ]
+      },
+      {
+        path: 'buyer',
+        component: BuyerComponent,
+        children: [
+          {
+            path: 'view_items',
+            component: BuyerItemsViewComponent
+          },
+          {
+            path: 'cart',
+            component: BuyerCartComponent
           }
         ]
       }

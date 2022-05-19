@@ -6,7 +6,7 @@ import lk.agri.entity.Item;
 import lk.agri.entity.UserAccount;
 import lk.agri.repository.ItemRepository;
 import lk.agri.repository.UserAccountRepository;
-import lk.agri.service.TraderService;
+import lk.agri.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TraderServiceImpl implements TraderService {
+public class BuyerServiceImpl implements BuyerService {
     @Autowired
     private UserAccountRepository userAccountRepository;
     @Autowired
@@ -40,13 +40,13 @@ public class TraderServiceImpl implements TraderService {
 
     @Override
     public UserAccountDTO addAccount(UserAccount userAccount) {
-            return new UserAccountDTO(userAccountRepository.save(userAccount));
+        return new UserAccountDTO(userAccountRepository.save(userAccount));
     }
 
     @Override
     public ItemDTO addItem(Item item) {
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
-        item.setItemId("Item"+dateTime);
+        item.setItemId("Item" + dateTime);
         item.setUserAccount(item.getUserAccount());
 
         return new ItemDTO(itemRepository.save(item));
@@ -57,7 +57,7 @@ public class TraderServiceImpl implements TraderService {
         List<Item> items = itemRepository.findAllByUserAccountEmail(nic);
         List<ItemDTO> cardDTOS = new ArrayList<>();
 
-        for (Item item : items){
+        for (Item item : items) {
             cardDTOS.add(new ItemDTO(item));
         }
         return cardDTOS;
@@ -74,5 +74,18 @@ public class TraderServiceImpl implements TraderService {
             return new ItemDTO(itemRepository.save(itemObj));
         }
         return null;
+    }
+
+    @Override
+    public List<ItemDTO> getItems(String txt) {
+        if (txt.equals("undefined")) {
+            txt = "";
+        }
+        List<Item> items = itemRepository.findAllByDescription(txt);
+        List<ItemDTO> itemDTOS = new ArrayList<>();
+        for (Item item : items) {
+            itemDTOS.add(new ItemDTO(item));
+        }
+        return itemDTOS;
     }
 }

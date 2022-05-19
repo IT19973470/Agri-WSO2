@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       if (user !== null && user['accountType'] === 'F') {
         this.router.navigate(['/main/farmer/view_items'])
       } else if (user['accountType'] === 'B') {
-        this.router.navigate(['/main/buyer']);
+        this.router.navigate(['/main/buyer/view_items']);
       } else {
         this.logged = false;
       }

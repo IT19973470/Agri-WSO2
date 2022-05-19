@@ -7,10 +7,16 @@ import lk.agri.entity.UserAccount;
 
 import java.util.List;
 
-public interface TraderService {
+public interface BuyerService {
     UserAccountDTO updateTrader(String aplicationID, UserAccount userAccount);
+
     public UserAccountDTO addAccount(UserAccount userAccount);
+
     public ItemDTO addItem(Item item);
+
     public List<ItemDTO> getAllCards(String nic);
+
     public ItemDTO updateItem(String ID, Item item);
+
+    List<ItemDTO> getItems(String txt);
 }

@@ -11,6 +11,8 @@ public interface ItemRepository extends JpaRepository<Item, String> {
 //    List<Item> findAllByCardTitle(String cardTitle);
     List<Item> findAllByUserAccountEmail(String accId);
 
+    List<Item> findAllByDescription(String txt);
+
 //    @Query(value = "from card where cardTitle=?1")
 //    List<Card> Title(String cardTitle);
 }

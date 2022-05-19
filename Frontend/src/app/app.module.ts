@@ -18,6 +18,8 @@ import { NavFarmerComponent } from './main/navbar/nav-farmer/nav-farmer.componen
 import { NavBuyerComponent } from './main/navbar/nav-buyer/nav-buyer.component';
 import { FarmerItemsManageComponent } from './main/content/farmer/farmer-items-manage/farmer-items-manage.component';
 import { FarmerItemsViewComponent } from './main/content/farmer/farmer-items-view/farmer-items-view.component';
+import { BuyerItemsViewComponent } from './main/content/buyer/buyer-items-view/buyer-items-view.component';
+import { BuyerCartComponent } from './main/content/buyer/buyer-cart/buyer-cart.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { FarmerItemsViewComponent } from './main/content/farmer/farmer-items-vie
     NavFarmerComponent,
     NavBuyerComponent,
     FarmerItemsManageComponent,
-    FarmerItemsViewComponent
+    FarmerItemsViewComponent,
+    BuyerItemsViewComponent,
+    BuyerCartComponent
   ],
   imports: [
     BrowserModule,
