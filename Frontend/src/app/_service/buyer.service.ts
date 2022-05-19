@@ -8,10 +8,24 @@ import {HttpClient} from "@angular/common/http";
 })
 export class BuyerService {
 
+  cart;
+
   constructor(private http: HttpClient) {
   }
 
   getItems(txt): Observable<any> {
     return this.http.get<any>(environment.backend_url + "/buyer/getItems/" + txt);
+  }
+
+  addToCart(cart) {
+    return this.http.post<any>(environment.backend_url + "/buyer/addToCart", cart);
+  }
+
+  getCart() {
+    return this.http.get<any>(environment.backend_url + "/buyer/getCart/" + JSON.parse(localStorage.getItem('user')).email);
+  }
+
+  addCart(cart) {
+    return this.http.post<any>(environment.backend_url + "/buyer/addCart", cart)
   }
 }

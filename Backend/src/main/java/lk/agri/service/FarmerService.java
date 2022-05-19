@@ -3,7 +3,7 @@ package lk.agri.service;
 import lk.agri.dto.ItemDTO;
 import lk.agri.dto.CartDTO;
 import lk.agri.entity.Item;
-import lk.agri.entity.Cart;
+import lk.agri.entity.CartDetail;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -15,13 +15,13 @@ public interface FarmerService {
 
     List<ItemDTO> getItems(String email);
 
-    public Cart addCart(Cart cart);
+//    public CartDetail addCart(CartDetail cart);
 
     public List<ItemDTO> AllCards();
 
 
 
-    public List<CartDTO> getAllCarts(String nic);
+//    public List<CartDTO> getAllCarts(String nic);
 
     public ItemDTO updateItem(String ID, Item item, MultipartFile file);
 

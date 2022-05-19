@@ -1,27 +1,40 @@
 package lk.agri.service.impl;
 
+import lk.agri.dto.CartDTO;
+import lk.agri.dto.CartDetailDTO;
 import lk.agri.dto.ItemDTO;
 import lk.agri.dto.UserAccountDTO;
+import lk.agri.entity.Cart;
+import lk.agri.entity.CartDetail;
 import lk.agri.entity.Item;
 import lk.agri.entity.UserAccount;
+import lk.agri.repository.CartDetailRepository;
+import lk.agri.repository.CartRepository;
 import lk.agri.repository.ItemRepository;
 import lk.agri.repository.UserAccountRepository;
 import lk.agri.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class BuyerServiceImpl implements BuyerService {
+
     @Autowired
     private UserAccountRepository userAccountRepository;
     @Autowired
     private ItemRepository itemRepository;
+    @Autowired
+    private CartRepository cartRepository;
+    @Autowired
+    private CartDetailRepository cartDetailRepository;
 
     @Override
     public UserAccountDTO updateTrader(String nic, UserAccount userAccount) {
@@ -78,14 +91,67 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Override
     public List<ItemDTO> getItems(String txt) {
+        List<Item> items;
         if (txt.equals("undefined")) {
-            txt = "";
+            items = itemRepository.findAll();
+        } else {
+            items = itemRepository.findAllByDescription(txt);
         }
-        List<Item> items = itemRepository.findAllByDescription(txt);
         List<ItemDTO> itemDTOS = new ArrayList<>();
         for (Item item : items) {
             itemDTOS.add(new ItemDTO(item));
         }
         return itemDTOS;
+    }
+
+    @Override
+    public boolean addToCart(CartDetail cartDetail) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String format = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        Optional<Cart> cartPrev = cartRepository.findByPurchased(false);
+        Cart cartObj;
+        if (!cartPrev.isPresent()) {
+            Cart cart = new Cart();
+            cart.setCartId("C" + format);
+            cart.setUserAccount(cartDetail.getUserAccount());
+            cartObj = cartRepository.save(cart);
+        } else {
+            cartObj = cartPrev.get();
+        }
+        cartDetail.setCartDetailId("CD" + format);
+        cartDetail.setCart(cartObj);
+        cartDetailRepository.save(cartDetail);
+        return true;
+    }
+
+    @Override
+    public CartDTO getCart(String email) {
+        Optional<Cart> cartOpt = cartRepository.getCart(email);
+        if (cartOpt.isPresent()) {
+            Cart cart = cartOpt.get();
+            List<CartDetailDTO> cartDetailDTOS = new ArrayList<>();
+            for (CartDetail cartDetail : cart.getCartDetails()) {
+                cartDetailDTOS.add(new CartDetailDTO(cartDetail));
+            }
+            CartDTO cartDTO = new CartDTO(cart);
+            cartDTO.setCartDetails(cartDetailDTOS);
+            return cartDTO;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean addCart(Cart cart) {
+        Optional<Cart> cartPrev = cartRepository.findByPurchased(false);
+        if (cartPrev.isPresent()) {
+            Cart cartObj = cartPrev.get();
+            cartObj.setDelivery(cart.getDelivery());
+            cartObj.setPurchasedAt(LocalDate.now());
+            cartObj.setPurchased(true);
+            cartObj.setPayId(cart.getPayId());
+            cartRepository.save(cartObj);
+            return true;
+        }
+        return false;
     }
 }

@@ -20,6 +20,7 @@ import { FarmerItemsManageComponent } from './main/content/farmer/farmer-items-m
 import { FarmerItemsViewComponent } from './main/content/farmer/farmer-items-view/farmer-items-view.component';
 import { BuyerItemsViewComponent } from './main/content/buyer/buyer-items-view/buyer-items-view.component';
 import { BuyerCartComponent } from './main/content/buyer/buyer-cart/buyer-cart.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { BuyerCartComponent } from './main/content/buyer/buyer-cart/buyer-cart.c
     FarmerItemsManageComponent,
     FarmerItemsViewComponent,
     BuyerItemsViewComponent,
-    BuyerCartComponent
+    BuyerCartComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,

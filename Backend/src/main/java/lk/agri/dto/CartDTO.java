@@ -1,36 +1,57 @@
 package lk.agri.dto;
+
+import lk.agri.entity.Cart;
+import lk.agri.entity.CartDetail;
 import lk.agri.entity.Item;
 import lk.agri.entity.UserAccount;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class CartDTO {
-    private int quantity;
-    private Item item;
-    private UserAccount userAccount;
+    private String cartId;
+    private LocalDate purchasedAt;
+    private boolean purchased;
+    private List<CartDetailDTO> cartDetails;
 
     public CartDTO() {
     }
 
-    public int getQuantity() {
-        return quantity;
+    public CartDTO(Cart cart) {
+        this.cartId = cart.getCartId();
+        this.purchasedAt = cart.getPurchasedAt();
+        this.purchased = cart.isPurchased();
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public String getCartId() {
+        return cartId;
     }
 
-    public Item getItem() {
-        return item;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public LocalDate getPurchasedAt() {
+        return purchasedAt;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public void setPurchasedAt(LocalDate purchasedAt) {
+        this.purchasedAt = purchasedAt;
     }
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public boolean isPurchased() {
+        return purchased;
+    }
+
+    public void setPurchased(boolean purchased) {
+        this.purchased = purchased;
+    }
+
+    public List<CartDetailDTO> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(List<CartDetailDTO> cartDetails) {
+        this.cartDetails = cartDetails;
     }
 }

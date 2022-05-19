@@ -39,4 +39,18 @@ export class BuyerItemsViewComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(environment.image_url + itemPackageImage.imgName);
   }
 
+  addToCart(item) {
+    let cart = {
+      quantity: item.bQty,
+      item: item,
+      userAccount: {
+        email: JSON.parse(localStorage.getItem('user')).email
+      }
+    }
+    console.log(item)
+    this.buyerS.addToCart(cart).subscribe((item) => {
+
+    })
+  }
+
 }

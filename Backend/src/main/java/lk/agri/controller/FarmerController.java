@@ -1,7 +1,7 @@
 package lk.agri.controller;
 
 import lk.agri.entity.Item;
-import lk.agri.entity.Cart;
+import lk.agri.entity.CartDetail;
 import lk.agri.service.FarmerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "agriculture/" + "farmer")
+@RequestMapping(value = "farmer")
 public class FarmerController {
 
     @Autowired
@@ -36,16 +36,16 @@ public class FarmerController {
         return ResponseEntity.ok(itemService.removeItem(id));
     }
 
-    @PostMapping(value = "/addCart")
-    public ResponseEntity addCart(@RequestBody Cart cart) {
-        return ResponseEntity.ok(itemService.addCart(cart));
-    }
-
-
-    @GetMapping(value = "/getAllCarts/{nic}")
-    public ResponseEntity getAllCarts(@PathVariable String nic) {
-        return ResponseEntity.ok(itemService.getAllCarts(nic));
-    }
+//    @PostMapping(value = "/addCart")
+//    public ResponseEntity addCart(@RequestBody CartDetail cart) {
+//        return ResponseEntity.ok(itemService.addCart(cart));
+//    }
+//
+//
+//    @GetMapping(value = "/getAllCarts/{nic}")
+//    public ResponseEntity getAllCarts(@PathVariable String nic) {
+//        return ResponseEntity.ok(itemService.getAllCarts(nic));
+//    }
 
     @GetMapping(value = "/AllCards")
     public ResponseEntity AllCards() {

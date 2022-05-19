@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "agriculture/userAccount")
+@RequestMapping(value = "user")
 public class UserAccountController {
 
     @Autowired

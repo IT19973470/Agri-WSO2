@@ -1,7 +1,7 @@
 package lk.agri.controller;
-import lk.agri.dto.UserAccountDTO;
-import lk.agri.entity.Item;
-import lk.agri.entity.UserAccount;
+
+import lk.agri.entity.Cart;
+import lk.agri.entity.CartDetail;
 import lk.agri.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "agriculture/buyer")
+@RequestMapping(value = "buyer")
 public class BuyerController {
     @Autowired
     private BuyerService buyerService;
@@ -19,7 +19,20 @@ public class BuyerController {
         return ResponseEntity.ok(buyerService.getItems(txt));
     }
 
+    @PostMapping(value = "/addToCart")
+    public ResponseEntity addToCart(@RequestBody CartDetail cart) {
+        return ResponseEntity.ok(buyerService.addToCart(cart));
+    }
 
+    @PostMapping(value = "/addCart")
+    public ResponseEntity addCart(@RequestBody Cart cart) {
+        return ResponseEntity.ok(buyerService.addCart(cart));
+    }
+
+    @GetMapping(value = "/getCart/{email}")
+    public ResponseEntity getCart(@PathVariable String email) {
+        return ResponseEntity.ok(buyerService.getCart(email));
+    }
 //    @PutMapping(value = "/update/{nic}")
 //    public ResponseEntity<UserAccountDTO> updateApplication(@PathVariable String nic, @RequestBody UserAccount userAccount) {
 //        return ResponseEntity.ok(traderService.updateTrader(nic, userAccount));

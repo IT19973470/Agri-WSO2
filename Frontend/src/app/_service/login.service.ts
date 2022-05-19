@@ -11,11 +11,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   accLogin(user): Observable<any> {
-    return this.http.post<any>(environment.backend_url + "/userAccount/login", user);
+    return this.http.post<any>(environment.backend_url + "/user/login", user);
   }
 
   signUp(user): Observable<any> {
-    return this.http.post<any>(environment.backend_url + "/userAccount/signUp", user);
+    return this.http.post<any>(environment.backend_url + "/user/signUp", user);
   }
 
   accLogout() {

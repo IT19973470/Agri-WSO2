@@ -9,6 +9,7 @@ import {FarmerComponent} from "./main/content/farmer/farmer.component";
 import {BuyerComponent} from "./main/content/buyer/buyer.component";
 import {BuyerItemsViewComponent} from "./main/content/buyer/buyer-items-view/buyer-items-view.component";
 import {BuyerCartComponent} from "./main/content/buyer/buyer-cart/buyer-cart.component";
+import {PaymentSuccessComponent} from "./payment-success/payment-success.component";
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
           {
             path: 'cart',
             component: BuyerCartComponent
+          },
+          {
+            path: 'pay_success',
+            component: PaymentSuccessComponent,
           }
         ]
       }
