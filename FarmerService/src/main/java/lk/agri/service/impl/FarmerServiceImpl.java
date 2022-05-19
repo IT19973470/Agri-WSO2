@@ -3,8 +3,7 @@ package lk.agri.service.impl;
 import lk.agri.dto.ItemDTO;
 import lk.agri.dto.CartDTO;
 import lk.agri.entity.Item;
-import lk.agri.entity.Cart;
-import lk.agri.entity.CartPK;
+import lk.agri.entity.CartDetail;
 import lk.agri.repository.ItemRepository;
 import lk.agri.repository.CartRepository;
 import lk.agri.service.FarmerService;
@@ -99,19 +98,19 @@ public class FarmerServiceImpl implements FarmerService {
         return true;
     }
 
-    @Override
-    public Cart addCart(Cart cart) {
-        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
-        cart.setCartPK(new CartPK(cart.getUserAccount().getEmail(), cart.getItem().getItemId(), true));
+//    @Override
+//    public CartDetail addCart(CartDetail cart) {
+//        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
+//        cart.setCartPK(new CartDetailsPK(cart.getUserAccount().getEmail(), cart.getItem().getItemId(), true));
+////
+////        for (Card card : cart.getCard()) {
+////            cart.setCartPK(new CartPK(cart.getUserAccount().getNic(),card.getCardId()));
+////
+////        }
+//        cart.setUserAccount(cart.getUserAccount());
 //
-//        for (Card card : cart.getCard()) {
-//            cart.setCartPK(new CartPK(cart.getUserAccount().getNic(),card.getCardId()));
-//
-//        }
-        cart.setUserAccount(cart.getUserAccount());
-
-        return cartRepository.save(cart);
-    }
+//        return cartRepository.save(cart);
+//    }
 
     @Override
     public List<ItemDTO> AllCards() {
@@ -125,19 +124,19 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
 
-    @Override
-    public List<CartDTO> getAllCarts(String nic) {
-        List<CartDTO> cardDTOS = new ArrayList<>();
-        List<Cart> cart = cartRepository.findAllByUserAccountEmail(nic);
-        for (Cart cart1 : cart) {
-            CartDTO cartDTO = new CartDTO();
-            cartDTO.setQuantity(cart1.getQuantity());
-            cartDTO.setItem(cart1.getItem());
-            // cartDTO.setUserAccount(cart1.getUserAccount());
-            cardDTOS.add(cartDTO);
-        }
-        return cardDTOS;
-    }
+//    @Override
+//    public List<CartDTO> getAllCarts(String nic) {
+//        List<CartDTO> cardDTOS = new ArrayList<>();
+//        List<CartDetail> cart = cartRepository.findAllByUserAccountEmail(nic);
+//        for (CartDetail cart1 : cart) {
+//            CartDTO cartDTO = new CartDTO();
+//            cartDTO.setQuantity(cart1.getQuantity());
+//            cartDTO.setItem(cart1.getItem());
+//            // cartDTO.setUserAccount(cart1.getUserAccount());
+//            cardDTOS.add(cartDTO);
+//        }
+//        return cardDTOS;
+//    }
 
 
     @Override
@@ -154,7 +153,7 @@ public class FarmerServiceImpl implements FarmerService {
     @Override
     @Transactional
     public boolean deleteCart(String nic, String itemID) {
-        cartRepository.deleteByUserAccountEmailAndItemItemId(nic, itemID);
+//        cartRepository.deleteByUserAccountEmailAndItemItemId(nic, itemID);
         return true;
     }
 

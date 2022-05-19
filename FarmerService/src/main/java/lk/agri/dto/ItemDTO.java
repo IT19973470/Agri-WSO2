@@ -12,6 +12,7 @@ public class ItemDTO {
     private String imgName;
     private String imgType;
     private int qty;
+    private int bQty = 1;
 
     private UserAccount userAccount;
 
@@ -78,5 +79,13 @@ public class ItemDTO {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public int getbQty() {
+        return bQty;
+    }
+
+    public void setbQty(int bQty) {
+        this.bQty = bQty;
     }
 }

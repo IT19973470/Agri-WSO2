@@ -1,7 +1,10 @@
 package lk.agri.service;
 
+import lk.agri.dto.CartDTO;
 import lk.agri.dto.ItemDTO;
 import lk.agri.dto.UserAccountDTO;
+import lk.agri.entity.Cart;
+import lk.agri.entity.CartDetail;
 import lk.agri.entity.Item;
 import lk.agri.entity.UserAccount;
 
@@ -19,5 +22,10 @@ public interface BuyerService {
     public ItemDTO updateItem(String ID, Item item);
 
     List<ItemDTO> getItems(String txt);
-    List<ItemDTO> getItems();
+
+    boolean addToCart(CartDetail cart);
+
+    CartDTO getCart(String email);
+
+    boolean addCart(Cart cart);
 }

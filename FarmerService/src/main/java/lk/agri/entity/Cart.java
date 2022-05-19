@@ -1,40 +1,49 @@
 package lk.agri.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class Cart {
 
-    @EmbeddedId
-    private CartPK cartPK;
-    private int quantity;
+    @Id
+    private String cartId;
+    private LocalDate purchasedAt;
+    private boolean purchased;
+    private String payId;
+
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "cart")
+    private Set<CartDetail> cartDetails;
 
     @ManyToOne
-    @JoinColumn(name="itemId",referencedColumnName = "itemId",insertable = false, updatable = false,nullable = false)
-    private Item item;
-
-    @ManyToOne
-    @JoinColumn(name="email",referencedColumnName = "email",insertable = false, updatable = false,nullable = false)
     private UserAccount userAccount;
 
-//    @JoinColumn(name="purchased",referencedColumnName = "purchased",insertable = false, updatable = false,nullable = false)
-//    private boolean purchased;
+    @ManyToOne
+    private Delivery delivery;
 
-
-    public int getQuantity() {
-        return quantity;
+    public String getCartId() {
+        return cartId;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 
-    public Item getItem() {
-        return item;
+    public LocalDate getPurchasedAt() {
+        return purchasedAt;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setPurchasedAt(LocalDate purchasedAt) {
+        this.purchasedAt = purchasedAt;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 
     public UserAccount getUserAccount() {
@@ -45,19 +54,27 @@ public class Cart {
         this.userAccount = userAccount;
     }
 
-    public CartPK getCartPK() {
-        return cartPK;
+    public boolean isPurchased() {
+        return purchased;
     }
 
-    public void setCartPK(CartPK cartPK) {
-        this.cartPK = cartPK;
+    public Set<CartDetail> getCartDetails() {
+        return cartDetails;
     }
 
-//    public boolean isPurchased() {
-//        return purchased;
-//    }
-//
-//    public void setPurchased(boolean purchased) {
-//        this.purchased = purchased;
-//    }
+    public void setCartDetails(Set<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
+    }
+
+    public void setPurchased(boolean purchased) {
+        this.purchased = purchased;
+    }
+
+    public String getPayId() {
+        return payId;
+    }
+
+    public void setPayId(String payId) {
+        this.payId = payId;
+    }
 }
