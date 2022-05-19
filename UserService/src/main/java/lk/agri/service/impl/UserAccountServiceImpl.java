@@ -24,9 +24,6 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccountDTO signUp(UserAccount userAccount) {
-//        LocalDateTime localDateTime = LocalDateTime.now();
-//        String format = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-//        userAccount.setAccId("ACC" + format);
         UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountRepository.save(userAccount));
         userAccountDTO.setPassword(null);
         return userAccountDTO;

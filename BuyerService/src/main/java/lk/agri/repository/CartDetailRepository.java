@@ -10,6 +10,4 @@ import java.util.Optional;
 
 @Repository
 public interface CartDetailRepository extends JpaRepository<CartDetail, String> {
-
-//    long deleteByUserAccountEmailAndItemItemId(String nic, String item);
 }

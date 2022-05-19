@@ -17,5 +17,4 @@ public interface CartRepository extends JpaRepository<Cart, String> {
 
     Optional<Cart> findByPurchased(boolean purchase);
 
-//    long deleteByUserAccountEmailAndItemItemId(String nic, String item);
 }

@@ -36,31 +36,4 @@ public class FarmerController {
         return ResponseEntity.ok(itemService.removeItem(id));
     }
 
-//    @PostMapping(value = "/addCart")
-//    public ResponseEntity addCart(@RequestBody CartDetail cart) {
-//        return ResponseEntity.ok(itemService.addCart(cart));
-//    }
-//
-//
-//    @GetMapping(value = "/getAllCarts/{nic}")
-//    public ResponseEntity getAllCarts(@PathVariable String nic) {
-//        return ResponseEntity.ok(itemService.getAllCarts(nic));
-//    }
-
-    @GetMapping(value = "/AllCards")
-    public ResponseEntity AllCards() {
-        return ResponseEntity.ok(itemService.AllCards());
-    }
-
-    @GetMapping(value = "/card/{getByName}")
-    public ResponseEntity getCardsByTitle(@PathVariable String getByName) {
-        return ResponseEntity.ok(itemService.getCardsByTitle(getByName));
-    }
-
-
-    @DeleteMapping(value = "/deleteCart/{nic}/{itemID}")
-    public ResponseEntity deleteCart(@PathVariable String nic, @PathVariable String itemID) {
-        return ResponseEntity.ok(itemService.deleteCart(nic, itemID));
-    }
-
 }

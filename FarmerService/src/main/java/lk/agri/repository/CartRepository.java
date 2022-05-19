@@ -12,10 +12,4 @@ import java.util.Optional;
 @Repository
 public interface CartRepository extends JpaRepository<Cart, String> {
 
-    @Query("from Cart where userAccount.email=?1 and purchased=false")
-    Optional<Cart> getCart(String email);
-
-    Optional<Cart> findByPurchased(boolean purchase);
-
-//    long deleteByUserAccountEmailAndItemItemId(String nic, String item);
 }

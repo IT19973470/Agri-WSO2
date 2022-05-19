@@ -15,19 +15,7 @@ public interface FarmerService {
 
     List<ItemDTO> getItems(String email);
 
-//    public CartDetail addCart(CartDetail cart);
-
-    public List<ItemDTO> AllCards();
-
-
-
-//    public List<CartDTO> getAllCarts(String nic);
-
-    public ItemDTO updateItem(String ID, Item item, MultipartFile file);
-
-    public List<ItemDTO> getCardsByTitle(String title);
-
-    boolean deleteCart(String nic, String itemID);
+    ItemDTO updateItem(String ID, Item item, MultipartFile file);
 
     boolean removeItem(String id);
 }
