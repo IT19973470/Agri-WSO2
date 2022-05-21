@@ -8,16 +8,24 @@ public class Item {
     @Id
     private String itemId;
     private String description;
-    private String price;
+    private double price;
     private String imgName;
     private String imgType;
     private int qty;
+    @ManyToOne
+    private UserAccount userAccount;
 
     public Item() {
     }
 
-    @ManyToOne
-    private UserAccount userAccount;
+    public Item(String itemId, String description, double price, int qty, String email) {
+        this.itemId = itemId;
+        this.description = description;
+        this.price = price;
+        this.qty = qty;
+        this.userAccount = new UserAccount();
+        this.userAccount.setEmail(email);
+    }
 
     public UserAccount getUserAccount() {
         return userAccount;
@@ -43,11 +51,11 @@ public class Item {
         this.description = description;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -74,4 +82,5 @@ public class Item {
     public void setQty(int qty) {
         this.qty = qty;
     }
+
 }

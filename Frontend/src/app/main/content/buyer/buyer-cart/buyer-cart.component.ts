@@ -11,6 +11,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class BuyerCartComponent implements OnInit {
 
   cartDetails = [];
+  deliveries = [];
   total = 0;
   cart = {
     delivery: {
@@ -24,17 +25,23 @@ export class BuyerCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCart();
+    this.getDeliveries();
   }
 
   getCart() {
     this.buyerS.getCart().subscribe((cart) => {
-      console.log(cart);
       if (cart !== null) {
         this.cartDetails = cart.cartDetails;
         this.cartDetails.forEach(item => {
           this.total += (item.quantity * item.item.price);
         })
       }
+    })
+  }
+
+  getDeliveries() {
+    this.buyerS.getDeliveries().subscribe((deliveries) => {
+      this.deliveries = deliveries;
     })
   }
 

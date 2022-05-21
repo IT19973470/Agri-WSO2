@@ -8,7 +8,7 @@ public class ItemDTO {
 
     private String itemId;
     private String description;
-    private String price;
+    private double price;
     private String imgName;
     private String imgType;
     private int qty;
@@ -49,11 +49,11 @@ public class ItemDTO {
         this.description = description;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

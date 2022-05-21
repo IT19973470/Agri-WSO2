@@ -11,7 +11,7 @@
 
   <div
     routerLink="/main/farmer/manage_items"
-    (click)="setTopic('Manage Items')"
+    (click)="setTopic('Manage Items');resetItem()"
     #manageItems="routerLinkActive"
     routerLinkActive
     [ngStyle]="{'color':manageItems.isActive?'#c0050e':''}">

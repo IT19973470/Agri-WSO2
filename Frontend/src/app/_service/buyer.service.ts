@@ -17,6 +17,10 @@ export class BuyerService {
     return this.http.get<any>(environment.backend_url + "/buyer/getItems/" + txt);
   }
 
+  getDeliveries(): Observable<any> {
+    return this.http.get<any>(environment.backend_url + "/delivery/getDeliveries");
+  }
+
   addToCart(cart) {
     return this.http.post<any>(environment.backend_url + "/buyer/addToCart", cart);
   }

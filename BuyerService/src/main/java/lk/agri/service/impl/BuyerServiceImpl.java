@@ -28,66 +28,11 @@ import java.util.Set;
 public class BuyerServiceImpl implements BuyerService {
 
     @Autowired
-    private UserAccountRepository userAccountRepository;
-    @Autowired
     private ItemRepository itemRepository;
     @Autowired
     private CartRepository cartRepository;
     @Autowired
     private CartDetailRepository cartDetailRepository;
-
-    @Override
-    public UserAccountDTO updateTrader(String nic, UserAccount userAccount) {
-        Optional<UserAccount> userAccountOptional = userAccountRepository.findById(nic);
-        if (userAccountOptional.isPresent()) {
-            UserAccount userAccountobj = userAccountOptional.get();
-            userAccountobj.setPassword(userAccount.getPassword());
-            userAccountobj.setAddress(userAccount.getAddress());
-            userAccountobj.setName(userAccount.getName());
-            userAccountobj.setEmail(userAccount.getEmail());
-            userAccountobj.setContactNo(userAccount.getContactNo());
-            return new UserAccountDTO(userAccountRepository.save(userAccountobj));
-        }
-        return null;
-    }
-
-    @Override
-    public UserAccountDTO addAccount(UserAccount userAccount) {
-        return new UserAccountDTO(userAccountRepository.save(userAccount));
-    }
-
-    @Override
-    public ItemDTO addItem(Item item) {
-        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
-        item.setItemId("Item" + dateTime);
-        item.setUserAccount(item.getUserAccount());
-
-        return new ItemDTO(itemRepository.save(item));
-    }
-
-    @Override
-    public List<ItemDTO> getAllCards(String nic) {
-        List<Item> items = itemRepository.findAllByUserAccountEmail(nic);
-        List<ItemDTO> cardDTOS = new ArrayList<>();
-
-        for (Item item : items) {
-            cardDTOS.add(new ItemDTO(item));
-        }
-        return cardDTOS;
-    }
-
-    @Override
-    public ItemDTO updateItem(String ID, Item item) {
-        Optional<Item> cardOptional = itemRepository.findById(ID);
-        if (cardOptional.isPresent()) {
-            Item itemObj = cardOptional.get();
-            itemObj.setDescription(item.getDescription());
-//            itemObj.setImage(item.getImage());
-            itemObj.setPrice(item.getPrice());
-            return new ItemDTO(itemRepository.save(itemObj));
-        }
-        return null;
-    }
 
     @Override
     public List<ItemDTO> getItems(String txt) {
@@ -117,6 +62,12 @@ public class BuyerServiceImpl implements BuyerService {
             cartObj = cartRepository.save(cart);
         } else {
             cartObj = cartPrev.get();
+        }
+        Optional<Item> itemOptional = itemRepository.findById(cartDetail.getItem().getItemId());
+        if (itemOptional.isPresent()) {
+            Item item = itemOptional.get();
+            item.setQty(item.getQty() - cartDetail.getQuantity());
+            itemRepository.save(item);
         }
         cartDetail.setCartDetailId("CD" + format);
         cartDetail.setCart(cartObj);
@@ -154,4 +105,58 @@ public class BuyerServiceImpl implements BuyerService {
         }
         return false;
     }
+
+//    @Override
+//    public UserAccountDTO updateTrader(String nic, UserAccount userAccount) {
+//        Optional<UserAccount> userAccountOptional = userAccountRepository.findById(nic);
+//        if (userAccountOptional.isPresent()) {
+//            UserAccount userAccountobj = userAccountOptional.get();
+//            userAccountobj.setPassword(userAccount.getPassword());
+//            userAccountobj.setAddress(userAccount.getAddress());
+//            userAccountobj.setName(userAccount.getName());
+//            userAccountobj.setEmail(userAccount.getEmail());
+//            userAccountobj.setContactNo(userAccount.getContactNo());
+//            return new UserAccountDTO(userAccountRepository.save(userAccountobj));
+//        }
+//        return null;
+//    }
+//
+//    @Override
+//    public List<ItemDTO> getAllCards(String nic) {
+//        List<Item> items = itemRepository.findAllByUserAccountEmail(nic);
+//        List<ItemDTO> cardDTOS = new ArrayList<>();
+//
+//        for (Item item : items) {
+//            cardDTOS.add(new ItemDTO(item));
+//        }
+//        return cardDTOS;
+//    }
+//
+//    @Override
+//    public ItemDTO updateItem(String ID, Item item) {
+//        Optional<Item> cardOptional = itemRepository.findById(ID);
+//        if (cardOptional.isPresent()) {
+//            Item itemObj = cardOptional.get();
+//            itemObj.setDescription(item.getDescription());
+////            itemObj.setImage(item.getImage());
+//            itemObj.setPrice(item.getPrice());
+//            return new ItemDTO(itemRepository.save(itemObj));
+//        }
+//        return null;
+//    }
+//
+//    @Override
+//    public UserAccountDTO addAccount(UserAccount userAccount) {
+//        return new UserAccountDTO(userAccountRepository.save(userAccount));
+//    }
+//
+//    @Override
+//    public ItemDTO addItem(Item item) {
+//        String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
+//        item.setItemId("Item" + dateTime);
+//        item.setUserAccount(item.getUserAccount());
+//
+//        return new ItemDTO(itemRepository.save(item));
+//    }
+
 }
