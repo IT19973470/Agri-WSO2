@@ -48,7 +48,7 @@ export class BuyerItemsViewComponent implements OnInit {
       }
     }
     console.log(item)
-    this.buyerS.addToCart(cart).subscribe((item) => {
+    this.buyerS.addToCart(cart).subscribe((itemObj) => {
       item.qty -= item.bQty;
     })
   }

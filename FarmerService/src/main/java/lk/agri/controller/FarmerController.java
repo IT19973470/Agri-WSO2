@@ -4,7 +4,6 @@ import lk.agri.entity.Item;
 import lk.agri.entity.CartDetail;
 import lk.agri.service.FarmerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,10 +16,9 @@ public class FarmerController {
     @Autowired
     private FarmerService itemService;
 
-    @PostMapping(value = "/addItem/{description}/{price}/{qty}/{email}")
-//    public ResponseEntity addItem(@RequestPart("item") Item item, @RequestParam(value = "file", required = false) MultipartFile file) {
-    public ResponseEntity addItem(@PathVariable String description, @PathVariable double price, @PathVariable int qty, @PathVariable String email, @RequestParam(value = "file", required = false) MultipartFile file) {
-        return ResponseEntity.ok(itemService.addItem(new Item(null, description, price, qty, email), file));
+    @PostMapping(value = "/addItem")
+    public ResponseEntity addItem(@RequestPart("item") Item item, @RequestParam(value = "file", required = false) MultipartFile file) {
+        return ResponseEntity.ok(itemService.addItem(item, file));
     }
 
     @GetMapping(value = "/getItems/{email}")

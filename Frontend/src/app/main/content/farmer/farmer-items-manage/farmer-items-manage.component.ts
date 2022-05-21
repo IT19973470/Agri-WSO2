@@ -36,13 +36,13 @@ export class FarmerItemsManageComponent implements OnInit {
     if (this.file !== null) {
       formData.append("file", this.file, this.file.name);
     }
-    // formData.append('item', new Blob([JSON.stringify(this.item)],
-    //   {
-    //     type: "application/json"
-    //   }));
+    formData.append('item', new Blob([JSON.stringify(this.item)],
+      {
+        type: "application/json"
+      }));
 
     if (this.submitType === 'Add') {
-      this.farmerS.addItem(formData,this.item).subscribe((item) => {
+      this.farmerS.addItem(formData).subscribe((item) => {
         this.router.navigate(['/main/farmer/view_items'])
       })
     } else {

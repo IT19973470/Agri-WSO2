@@ -13,12 +13,12 @@ export class FarmerService {
   constructor(private http: HttpClient) {
   }
 
-  addItem(form, item): Observable<any> {
-    return this.http.post<any>(environment.backend_url + "/farmer/addItem/" + item.description + "/" + item.price + "/" + item.qty + "/" + JSON.parse(localStorage.getItem('user')).email, form);
+  addItem(item): Observable<any> {
+    return this.http.post<any>('http://localhost:8082' + "/farmer/addItem", item);
   }
 
   updateItem(item, itemId): Observable<any> {
-    return this.http.put<any>(environment.backend_url + "/farmer/updateItem/" + itemId, item);
+    return this.http.put<any>('http://localhost:8082' + "/farmer/updateItem/" + itemId, item);
   }
 
   removeItem(itemId): Observable<any> {

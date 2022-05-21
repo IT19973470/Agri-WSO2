@@ -27,14 +27,6 @@ public class Item {
         this.userAccount.setEmail(email);
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
-
     public String getItemId() {
         return itemId;
     }
@@ -83,4 +75,11 @@ public class Item {
         this.qty = qty;
     }
 
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
 }
