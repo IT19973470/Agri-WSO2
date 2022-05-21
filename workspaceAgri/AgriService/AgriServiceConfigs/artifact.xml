@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="BuyerAPI" groupId="com.agri.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/BuyerAPI.xml</file>
+    </artifact>
+    <artifact name="FarmerAPI" groupId="com.agri.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/FarmerAPI.xml</file>
+    </artifact>
+    <artifact name="DeliveryAPI" groupId="com.agri.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/DeliveryAPI.xml</file>
+    </artifact>
+    <artifact name="UserAPI" groupId="com.agri.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/UserAPI.xml</file>
+    </artifact>
+    <artifact name="PaymentAPI" groupId="com.agri.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/PaymentAPI.xml</file>
+    </artifact>
+    <artifact name="BuyerEP" groupId="com.agri.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/BuyerEP.xml</file>
+    </artifact>
+    <artifact name="FarmerEP" groupId="com.agri.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/FarmerEP.xml</file>
+    </artifact>
+    <artifact name="DeliveryEP" groupId="com.agri.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/DeliveryEP.xml</file>
+    </artifact>
+    <artifact name="UserEP" groupId="com.agri.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/UserEP.xml</file>
+    </artifact>
+    <artifact name="PaymentEP" groupId="com.agri.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/PaymentEP.xml</file>
+    </artifact>
+</artifacts>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/buyer" name="BuyerAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="DELETE POST PUT GET">
+        <inSequence>
+            <log/>
+            <send>
+                <endpoint key="BuyerEP"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>
