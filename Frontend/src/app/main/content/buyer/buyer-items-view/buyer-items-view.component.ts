@@ -4,6 +4,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 import {BuyerService} from "../../../../_service/buyer.service";
+import {DecimalPipe} from "@angular/common";
 
 @Component({
   selector: 'app-buyer-items-view',
@@ -15,11 +16,13 @@ export class BuyerItemsViewComponent implements OnInit {
   items = [];
   txt;
 
-  constructor(private buyerS: BuyerService, private sanitizer: DomSanitizer, private router: Router) {
+  constructor(private buyerS: BuyerService, private sanitizer: DomSanitizer, private router: Router, private decimalPipe: DecimalPipe) {
   }
 
   ngOnInit(): void {
     this.getItems();
+    console.log(((10 % 1000) + '').split('.'))
+    console.log(parseInt(((10 / 1000) + '').split('.')[1])*100)
   }
 
   getItems() {
@@ -40,6 +43,7 @@ export class BuyerItemsViewComponent implements OnInit {
   }
 
   addToCart(item) {
+    item.bQty = item.gVal + item.kgVal * 1000;
     let cart = {
       quantity: item.bQty,
       item: item,
@@ -53,4 +57,11 @@ export class BuyerItemsViewComponent implements OnInit {
     })
   }
 
+  getQty(qty) {
+    let qtys = ((qty / 1000) + '').split('.');
+    if (qtys.length === 2) {
+      return ((qty / 1000) + '').split('.')[0] + 'Kg ' + ((qty % 1000) + '').split('.')[0] + 'g'
+    }
+    return qtys[0] + 'Kg'
+  }
 }

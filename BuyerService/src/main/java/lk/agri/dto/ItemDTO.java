@@ -13,6 +13,8 @@ public class ItemDTO {
     private String imgType;
     private int qty;
     private int bQty = 1;
+    private int gVal;
+    private int kgVal;
 
     private UserAccount userAccount;
 
@@ -87,5 +89,21 @@ public class ItemDTO {
 
     public void setbQty(int bQty) {
         this.bQty = bQty;
+    }
+
+    public int getgVal() {
+        return gVal;
+    }
+
+    public void setgVal(int gVal) {
+        this.gVal = gVal;
+    }
+
+    public int getKgVal() {
+        return kgVal;
+    }
+
+    public void setKgVal(int kgVal) {
+        this.kgVal = kgVal;
     }
 }

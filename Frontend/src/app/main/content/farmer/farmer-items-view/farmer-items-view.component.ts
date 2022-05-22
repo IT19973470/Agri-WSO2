@@ -13,7 +13,7 @@ export class FarmerItemsViewComponent implements OnInit {
 
   items = [];
 
-  constructor(private farmerS: FarmerService, private sanitizer: DomSanitizer,private router:Router) {
+  constructor(private farmerS: FarmerService, private sanitizer: DomSanitizer, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -37,5 +37,13 @@ export class FarmerItemsViewComponent implements OnInit {
     // let imageData = 'data:' + itemImg.itemImgType + ';base64,' + itemImg.itemImg;
     // return this.sanitizer.bypassSecurityTrustUrl(imageData);
     return this.sanitizer.bypassSecurityTrustUrl(environment.image_url + itemPackageImage.imgName);
+  }
+
+  getQty(qty) {
+    let qtys = ((qty / 1000) + '').split('.');
+    if (qtys.length === 2) {
+      return ((qty / 1000) + '').split('.')[0] + 'Kg ' + ((qty % 1000) + '').split('.')[0] + 'g'
+    }
+    return qtys[0] + 'Kg'
   }
 }

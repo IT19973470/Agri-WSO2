@@ -21,6 +21,7 @@ import { FarmerItemsViewComponent } from './main/content/farmer/farmer-items-vie
 import { BuyerItemsViewComponent } from './main/content/buyer/buyer-items-view/buyer-items-view.component';
 import { BuyerCartComponent } from './main/content/buyer/buyer-cart/buyer-cart.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import {DecimalPipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

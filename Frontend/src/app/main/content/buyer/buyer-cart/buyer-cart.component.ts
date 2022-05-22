@@ -56,4 +56,12 @@ export class BuyerCartComponent implements OnInit {
     localStorage.setItem('cart', JSON.stringify(this.cart))
     window.open('http://localhost:4201/login?total=' + this.total, '_blank');
   }
+
+  getQty(qty) {
+    let qtys = ((qty / 1000) + '').split('.');
+    if (qtys.length === 2) {
+      return ((qty / 1000) + '').split('.')[0] + 'Kg ' + ((qty % 1000) + '').split('.')[0] + 'g'
+    }
+    return qtys[0] + 'Kg'
+  }
 }
