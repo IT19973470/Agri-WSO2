@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   backend_url: 'http://localhost:8280',
-  image_url: 'http://192.168.1.4/agri/'
+  image_url: 'http://localhost/agri/'
 };
 
 /*
