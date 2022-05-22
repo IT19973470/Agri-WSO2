@@ -33,7 +33,7 @@ export class BuyerCartComponent implements OnInit {
       if (cart !== null) {
         this.cartDetails = cart.cartDetails;
         this.cartDetails.forEach(item => {
-          this.total += (item.quantity * item.item.price);
+          this.total += (item.quantity * (item.item.price / 1000));
         })
       }
     })

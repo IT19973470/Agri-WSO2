@@ -12,7 +12,7 @@
       </div>
       <div class="col-3" style="padding-top: 22px">
         <span style="font-weight: bold">Price :</span>
-        <span style="margin-left: 10px">{{(cartDetail.quantity * cartDetail.item.price) | number:'.2-2'}}</span>
+        <span style="margin-left: 10px">{{(cartDetail.quantity * (cartDetail.item.price/1000)) | number:'.2-2'}}</span>
       </div>
     </div>
   </div>
