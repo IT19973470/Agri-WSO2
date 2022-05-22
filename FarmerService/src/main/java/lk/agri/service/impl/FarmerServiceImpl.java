@@ -60,9 +60,9 @@ public class FarmerServiceImpl implements FarmerService {
             itemObj.setDescription(item.getDescription());
             itemObj.setPrice(item.getPrice());
             itemObj.setQty(item.getQty());
+            addImage(item, file);
             itemObj.setImgName(item.getImgName());
             itemObj.setImgType(item.getImgType());
-            addImage(item, file);
             return new ItemDTO(itemRepository.save(itemObj));
         }
         return null;
