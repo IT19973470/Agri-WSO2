@@ -15,6 +15,6 @@ public interface CartRepository extends JpaRepository<Cart, String> {
     @Query("from Cart where userAccount.email=?1 and purchased=false")
     Optional<Cart> getCart(String email);
 
-    Optional<Cart> findByPurchased(boolean purchase);
+    Optional<Cart> findByPurchasedAndUserAccountEmail(boolean purchase, String email);
 
 }

@@ -18,6 +18,7 @@ export class PaymentSuccessComponent implements OnInit {
       console.log(this.payId)
       this.cart = JSON.parse(localStorage.getItem('cart'));
       this.cart.payId = this.payId;
+      this.cart.userAccount = JSON.parse(localStorage.getItem('user'))
       this.buyerS.addCart(this.cart).subscribe((reply) => {
 
       })

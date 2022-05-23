@@ -53,7 +53,7 @@ public class BuyerServiceImpl implements BuyerService {
     public boolean addToCart(CartDetail cartDetail) {
         LocalDateTime localDateTime = LocalDateTime.now();
         String format = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        Optional<Cart> cartPrev = cartRepository.findByPurchased(false);
+        Optional<Cart> cartPrev = cartRepository.findByPurchasedAndUserAccountEmail(false, cartDetail.getUserAccount().getEmail());
         Cart cartObj;
         if (!cartPrev.isPresent()) {
             Cart cart = new Cart();
@@ -93,7 +93,7 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Override
     public boolean addCart(Cart cart) {
-        Optional<Cart> cartPrev = cartRepository.findByPurchased(false);
+        Optional<Cart> cartPrev = cartRepository.findByPurchasedAndUserAccountEmail(false, cart.getUserAccount().getEmail());
         if (cartPrev.isPresent()) {
             Cart cartObj = cartPrev.get();
             cartObj.setDelivery(cart.getDelivery());
