@@ -32,4 +32,8 @@ export class BuyerService {
   addCart(cart) {
     return this.http.post<any>(environment.backend_url + "/buyer/addCart", cart)
   }
+
+  removeItem(id) {
+    return this.http.delete<any>(environment.backend_url + "/buyer/removeCartDetail/" + id)
+  }
 }

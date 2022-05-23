@@ -18,9 +18,6 @@ export class ConfirmComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    console.log(this.loginService.payment.nic)
-    console.log(this.loginService.payment.email)
-    console.log(this.loginService.payment.amount)
     this.user.nic = this.loginService.payment.nic;
     this.user.email = this.loginService.payment.email;
     this.user.amount = this.loginService.payment.amount;
@@ -28,7 +25,6 @@ export class ConfirmComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    console.log(this.user);
     this.loginService.payment.nic = this.user.nic;
     this.loginService.payment.email = this.user.email;
     this.loginService.payment.amount = this.user.amount;

@@ -12,24 +12,21 @@ export class CardTypeComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.loginService.payment.nic)
+
   }
 
   visa() {
     this.loginService.payment.cardType = 'Visa';
-    console.log( this.loginService.payment);
     this.router.navigate(['main/payment']);
   }
 
   master() {
     this.loginService.payment.cardType = 'Master'
-    console.log( this.loginService.payment);
     this.router.navigate(['main/payment']);
   }
 
   amex() {
     this.loginService.payment.cardType = 'Amex'
-    console.log( this.loginService.payment);
     this.router.navigate(['main/payment']);
   }
 }

@@ -10,6 +10,9 @@ import {PaymentService} from '../../../_service/paymentService';
 })
 export class PaymentComponent implements OnInit {
 
+  invalidNumber = false;
+  invalidCVC = false;
+
   constructor(private router: Router, private loginService: LoginService, private paymentService: PaymentService) {
   }
 
@@ -33,23 +36,39 @@ export class PaymentComponent implements OnInit {
     this.payment.email = this.loginService.payment.email;
     this.payment.amount = this.loginService.payment.amount;
     this.payment.cardType = this.loginService.payment.cardType;
-    console.log(this.loginService.payment.nic);
-    console.log(this.loginService.payment.email);
-    console.log(this.loginService.payment.amount);
     this.amount = this.loginService.payment.amount;
   }
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    console.log(this.payment.expirationYear);
-    // this.loginService.payment.nic = this.user.nic;
-    // this.loginService.payment.email = this.user.email;
-    // this.loginService.payment.amount = this.user.amount;
     this.paymentService.addPayment(this.payment).subscribe((payment) => {
       console.log(payment);
       window.location.href = 'http://localhost:4200/main/buyer/pay_success?payId=' + payment.transactionID;
     })
   }
 
+  chkCardNumber() {
+    let CARD_REGEX = /^[0-9]{4}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}$/;
+    if (this.payment.card.length === 4) {
+      this.payment.card += ' ';
+    } else if (this.payment.card.length === 9) {
+      this.payment.card += ' ';
+    } else if (this.payment.card.length === 14) {
+      this.payment.card += ' ';
+    }
+    if (CARD_REGEX.test(this.payment.card)) {
+      this.invalidNumber = false;
+    } else {
+      this.invalidNumber = true;
+    }
+  }
 
+  chkCVC() {
+    let CVC_REGEX = /^[0-9]{3}$/;
+    if (CVC_REGEX.test(this.payment.cvc)) {
+      this.invalidCVC = false;
+    } else {
+      this.invalidCVC = true;
+    }
+  }
 }

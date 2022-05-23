@@ -20,6 +20,8 @@ public interface BuyerService {
 
     boolean addCart(Cart cart);
 
+    boolean removeCartDetail(String id);
+
 //    UserAccountDTO updateTrader(String aplicationID, UserAccount userAccount);
 //
 //    public UserAccountDTO addAccount(UserAccount userAccount);

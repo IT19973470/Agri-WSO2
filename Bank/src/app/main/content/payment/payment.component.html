@@ -9,13 +9,15 @@
         <div>
           <div>
             <label class="item-text">Card Number:</label>
-            <input type="text" [(ngModel)]="payment.card" name="card1" style="float: right"/>
+            <input type="text" [(ngModel)]="payment.card" name="card1" style="float: right"
+            (keyup)="chkCardNumber()"/>
+            <div *ngIf="invalidNumber" style="text-align: right;color: red;margin-top: 10px;font-size: 12px">Invalid number</div>
           </div>
           <br/>
           <div>
             <label class="item-text">Expiration Month:</label>
             <select [(ngModel)]="payment.expirationMonth" #placeFrom="ngModel" name="placeFrom" class="form-control" style="float: right; width: 190px">
-              <option value=""></option>
+              <option value="">Select Month</option>
               <option value="1">January</option>
               <option value="2">February</option>
               <option value="3">March</option>
@@ -38,12 +40,13 @@
           <br/>
           <div>
             <label class="item-text">CVC:</label>
-            <input [(ngModel)]="payment.cvc" type="text" name="cvc" style="float: right"/>
+            <input [(ngModel)]="payment.cvc" type="text" name="cvc" style="float: right" (keyup)="chkCVC()"/>
+            <div *ngIf="invalidCVC" style="text-align: right;color: red;margin-top: 10px;font-size: 12px">Invalid CVC</div>
           </div>
           <br/>
           <div>
             <label class="item-text">Amount:</label>
-            <input type="text" [(ngModel)]="amount" value="{{amount}}" name="amount" style="float: right"/>
+            <input type="text" [(ngModel)]="amount" value="{{amount}}" name="amount" disabled style="float: right"/>
           </div>
         </div>
         <hr/>

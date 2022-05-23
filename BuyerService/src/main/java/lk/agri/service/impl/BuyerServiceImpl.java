@@ -106,6 +106,12 @@ public class BuyerServiceImpl implements BuyerService {
         return false;
     }
 
+    @Override
+    public boolean removeCartDetail(String id) {
+        cartDetailRepository.deleteById(id);
+        return true;
+    }
+
 //    @Override
 //    public UserAccountDTO updateTrader(String nic, UserAccount userAccount) {
 //        Optional<UserAccount> userAccountOptional = userAccountRepository.findById(nic);

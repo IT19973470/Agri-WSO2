@@ -29,6 +29,7 @@ export class BuyerCartComponent implements OnInit {
   }
 
   getCart() {
+    this.total = 0;
     this.buyerS.getCart().subscribe((cart) => {
       if (cart !== null) {
         this.cartDetails = cart.cartDetails;
@@ -63,5 +64,13 @@ export class BuyerCartComponent implements OnInit {
       return ((qty / 1000) + '').split('.')[0] + 'Kg ' + ((qty % 1000) + '').split('.')[0] + 'g'
     }
     return qtys[0] + 'Kg'
+  }
+
+  removeItem(cartDetail) {
+    this.buyerS.removeItem(cartDetail.cartDetailId).subscribe(() => {
+      // this.cartDetails.splice(cartDetail, 1)
+      // console.log(this.cartDetails)
+      this.getCart();
+    })
   }
 }

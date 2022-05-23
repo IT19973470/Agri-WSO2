@@ -35,4 +35,9 @@ public class BuyerController {
         return ResponseEntity.ok(buyerService.getCart(email));
     }
 
+    @DeleteMapping(value = "/removeCartDetail/{id}")
+    public ResponseEntity removeCartDetail(@PathVariable String id) {
+        return ResponseEntity.ok(buyerService.removeCartDetail(id));
+    }
+
 }
